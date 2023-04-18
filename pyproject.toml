@@ -22,5 +22,5 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/MaskdDev/entx-py"
-"Bug Tracker" = "https://github.com/MaskdDev/entx-py/issues"
+"Homepage" = "https://github.com/MaskdDev/entxpy"
+"Bug Tracker" = "https://github.com/MaskdDev/entxpy/issues"
