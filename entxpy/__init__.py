@@ -12,13 +12,13 @@ class FileClient:
         
     def pack(self):
         if self.file_path.endswith(".py"):
-            with open(self.file_path, "r") as input_file:
+            with open(self.file_path, "r", encoding = "utf-8") as input_file:
                 contents = input_file.read()
                 contents_obj = {
                     "python": contents
                 }
                 new_path = self.file_path[:-3] + ".entxpy"
-                with open(new_path, "w") as output_file:
+                with open(new_path, "w", encoding = "utf-8") as output_file:
                     self.client.dump(contents_obj, output_file)
                     os.remove(self.file_path)
                     self.file_path = new_path
@@ -27,10 +27,10 @@ class FileClient:
              
     def unpack(self):
         if self.file_path.endswith(".entxpy"):
-            with open(self.file_path, "r") as input_file:
+            with open(self.file_path, "r", encoding = "utf-8") as input_file:
                 decrypted_contents = self.client.load(input_file)
                 new_path = self.file_path[:-7] + ".py"
-                with open(new_path, "w") as output_file:
+                with open(new_path, "w", encoding = "utf-8") as output_file:
                     output_file.write(decrypted_contents["python"])
                     os.remove(self.file_path)
                     self.file_path = new_path
@@ -39,10 +39,10 @@ class FileClient:
     
     def run(self):
         if self.file_path.endswith(".py"):
-            with open(self.file_path, "r") as to_run:
+            with open(self.file_path, "r", encoding = "utf-8") as to_run:
                 exec(to_run)
         elif self.file_path.endswith(".entxpy"):
-            with open(self.file_path, "r") as to_run:
+            with open(self.file_path, "r", encoding = "utf-8") as to_run:
                 exec(self.client.load(to_run)["python"])
         else:
             raise InvalidOperation("File must be either a .py file or a .entxpy file.")
